@@ -1,12 +1,12 @@
 # Projektstatus – Tille Voice Studio
 
-Stand: 2026-09-05, Phase W6 – PASS
+Stand: 2026-09-05, Phase W7 – PASS
 
 | Bereich | Status |
 |---|---|
 | System | Windows 11 Home 25H2, Build 26200.9278, x64; W4-Sicherheitsprüfung durchgeführt |
 | Ubuntu | ISO 24.04.4 LTS Desktop AMD64 vollständig geladen und SHA256-verifiziert; noch nicht installiert |
-| Rufus | Portable x64 4.15.2396 geladen; Authenticode gültig; noch nicht gestartet |
+| Rufus | Portable x64 4.15.2396; Authenticode gültig; Ubuntu-Stick in W6 erfolgreich erstellt |
 | Kernel | Plan verifiziert: Ubuntu 6.17 HWE; noch nicht installiert |
 | GPU | AMD Radeon RX 7700 XT, 12 GB VRAM, Windows-Status OK |
 | gfx | `gfx1101` laut AMD verifiziert; unter installiertem Linux später praktisch zu bestätigen |
@@ -19,7 +19,8 @@ Stand: 2026-09-05, Phase W6 – PASS
 | Chatterbox | 0.1.7 / Multilingual V3; Torch-2.6-Pin-Konflikt NOCH OFFEN |
 | Modell | Chatterbox Multilingual V3, 500M; noch nicht heruntergeladen |
 | GUI | noch nicht begonnen |
-| Downloadverbrauch | 6,658 GB / 20 GB; 13,342 GB verbleibend |
+| Codex unter Ubuntu | aktueller Standalone-Installer dokumentiert; 0,250 GB reserviert, noch nicht heruntergeladen |
+| Downloadverbrauch | 6,658 GB / 20 GB tatsächlich; 13,342 GB verbleibend, davon 0,250 GB für Codex reserviert |
 | SSD-Verbrauch Projekt | 6,658 GB ISO/Rufus außerhalb OneDrive plus unter 0,01 GB Projektdokumentation/Git-Metadaten |
 
 ## Checkpoints
@@ -31,6 +32,7 @@ Stand: 2026-09-05, Phase W6 – PASS
 - [x] Windows-Dual-Boot-Vorbereitung W4 – PASS; Backup vom Benutzer bestätigt
 - [x] Ubuntu-Platz W5 – PASS; `A:` exakt um 100 GiB verkleinert, 100,001 GiB nicht zugeordnet
 - [x] Ubuntu-Installationsmedium W6 – PASS; Intenso-Stick mit Ubuntu 24.04.4 im GPT-/UEFI-Modus erstellt und lesend verifiziert
+- [x] Übergabe vor Neustart W7 – PASS; Readiness vollständig, Übergabe- und Codex-Setup-Dokumente erstellt
 - [ ] Dual Boot
 - [ ] Ubuntu nativ
 - [ ] RX 7700 XT erkannt
@@ -60,7 +62,7 @@ Stand: 2026-09-05, Phase W6 – PASS
 - Lokale SHA256: `3a4c9877b483ab46d7c3fbe165a0db275e1ae3cfe56a5657e5a47c2f99a99d1e`; stimmt exakt mit `SHA256SUMS` von Ubuntu überein.
 - W3 erfolgreich abgeschlossen: `A:\TilleVoiceStudioDownloads\downloads\rufus-4.15p.exe`, Version 4.15.2396, 1.989.992 Byte.
 - Rufus-SHA256: `84c8a437f8af89257524478489e5c85f1edf25f761d299e2bcde46ac0afbe106`; Authenticode-Status **Valid**, Signierer Akeo Consulting.
-- Rufus wurde nicht gestartet und kein USB-Datenträger wurde verändert.
+- Rufus war zum Abschluss von W3 noch nicht gestartet; in W6 wurde damit ausschließlich der freigegebene Intenso-Stick beschrieben.
 - W4-Liveprüfung: Schnellstart ist in der Registry mit `HiberbootEnabled=1` vorgemerkt, aber wegen deaktiviertem Ruhezustand derzeit nicht verfügbar; `C:\hiberfil.sys` ist nicht vorhanden.
 - W4-Speicherprüfung: `A:` auf der internen Kingston-NVMe besitzt aktuell 213,96 GiB freien Dateisystemplatz. Rechnerisch sind 100 GiB für Ubuntu möglich; die tatsächlich verkleinerbare Größe wird erst in W5 geprüft.
 - Laut der bereits vom Benutzer erhöht ausgeführten BitLocker-Prüfung sind alle gemeldeten Volumes vollständig entschlüsselt und der Schutz ist aus. Ein Recovery-Key ist für den aktuellen unverschlüsselten Zustand nicht erforderlich.
@@ -91,3 +93,9 @@ Stand: 2026-09-05, Phase W6 – PASS
 - Das erstellte Volume `K:` heißt `UBUNTU 24_0`, verwendet FAT32, ist 14,55 GiB groß und enthält die erwarteten Ubuntu-/UEFI-Strukturen `.disk`, `boot`, `casper`, `EFI\\BOOT` und `boot\\grub`.
 - Die geschützten Datenträger `I:` und `J:` wurden nicht ausgewählt oder verändert. W6 ist **PASS**.
 - Nächster vorgesehener Schritt nur nach ausdrücklicher Freigabe: Phase W7 – Übergabe vor Neustart und vollständige Readiness-Checkliste. Noch kein Neustart.
+- W7-Liveprüfung vom 2026-09-05: ISO-SHA256 erneut exakt bestätigt; Intenso-Stick weiterhin Healthy/GPT/FAT32 mit EFI-, GRUB- und Ubuntu-Inhalten; 100,001 GiB auf Datenträger 3 weiterhin nicht zugeordnet.
+- UEFI, Secure Boot und RX 7700 XT sind weiterhin bestätigt. Schnellstart ist trotz latentem Registrywert funktional inaktiv, weil Ruhezustand und `C:\hiberfil.sys` fehlen.
+- `CODEX_CONTINUE_AFTER_UBUNTU.md` und `POST_UBUNTU_CODEX_SETUP.md` erstellt. Aktueller offizieller Codex-Linux-Pfad ist der Standalone-Installer; Node.js/npm ist für den bevorzugten Weg nicht erforderlich.
+- Für die spätere Codex-CLI-Installation wurden konservativ 0,250 GB reserviert. Tatsächlicher Download in W7: 0 GB.
+- **UBUNTU INSTALLATION READY.** W7 ist **PASS**.
+- Nächster vorgesehener Schritt ausschließlich nach ausdrücklicher Freigabe: W8 – manueller Neustart. Der Rechner wurde nicht neu gestartet.
