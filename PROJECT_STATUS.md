@@ -1,6 +1,6 @@
 # Projektstatus – Tille Voice Studio
 
-Stand: 2026-09-05, Phase W7 – PASS
+Stand: 2026-09-05, Phase W8 – SHUTDOWN AUTHORIZED
 
 | Bereich | Status |
 |---|---|
@@ -33,6 +33,7 @@ Stand: 2026-09-05, Phase W7 – PASS
 - [x] Ubuntu-Platz W5 – PASS; `A:` exakt um 100 GiB verkleinert, 100,001 GiB nicht zugeordnet
 - [x] Ubuntu-Installationsmedium W6 – PASS; Intenso-Stick mit Ubuntu 24.04.4 im GPT-/UEFI-Modus erstellt und lesend verifiziert
 - [x] Übergabe vor Neustart W7 – PASS; Readiness vollständig, Übergabe- und Codex-Setup-Dokumente erstellt
+- [ ] Manueller Betriebssystemwechsel W8 – vom Benutzer freigegeben; geordneter Shutdown ist der nächste unmittelbare Schritt
 - [ ] Dual Boot
 - [ ] Ubuntu nativ
 - [ ] RX 7700 XT erkannt
@@ -98,4 +99,6 @@ Stand: 2026-09-05, Phase W7 – PASS
 - `CODEX_CONTINUE_AFTER_UBUNTU.md` und `POST_UBUNTU_CODEX_SETUP.md` erstellt. Aktueller offizieller Codex-Linux-Pfad ist der Standalone-Installer; Node.js/npm ist für den bevorzugten Weg nicht erforderlich.
 - Für die spätere Codex-CLI-Installation wurden konservativ 0,250 GB reserviert. Tatsächlicher Download in W7: 0 GB.
 - **UBUNTU INSTALLATION READY.** W7 ist **PASS**.
-- Nächster vorgesehener Schritt ausschließlich nach ausdrücklicher Freigabe: W8 – manueller Neustart. Der Rechner wurde nicht neu gestartet.
+- Der Benutzer hat W8, den Betriebssystemwechsel und ein sicheres Herunterfahren ausdrücklich freigegeben.
+- Wegen der noch durch Prozesse belegten Datenlaufwerke `I:` und `J:` wird ein geordneter Windows-Shutdown ohne `/f` verwendet. Nach vollständigem Ausschalten müssen `I:` und `J:` physisch getrennt werden; der Intenso-Ubuntu-Stick bleibt angeschlossen.
+- Nach dem manuellen Einschalten folgt U0 – manuelle Ubuntu-Installation. Wenn „Ubuntu neben Windows Boot Manager installieren“ nicht angeboten wird: **STOPP**, keine Partitionierung raten und Screenshot/Foto bereitstellen.

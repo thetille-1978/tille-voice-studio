@@ -14,6 +14,7 @@
 | Ubuntu-Installationsmedium W6 | Ubuntu 24.04.4 LTS | lokale, verifizierte ISO | 0 GB Netzwerkdownload | 0 GB Netzwerkdownload | 6,658 GB | PASS, Intenso-USB-Stick erfolgreich beschrieben | 2026-09-05 |
 | W7-Readiness und Übergabe | lokal/Web-Metadaten | lokale Diagnose und offizielle OpenAI-Dokumentation | 0 GB | 0 GB | 6,658 GB | PASS, kein Datei-/Paketdownload | 2026-09-05 |
 | Codex CLI Standalone für Ubuntu | am Installationstag zu verifizieren | offizieller OpenAI-Installer | maximal 0,250 GB reserviert | 0 GB | 6,658 GB tatsächlich | RESERVIERT, nicht heruntergeladen | 2026-09-05 |
+| W8 – sicherer Betriebssystemwechsel | lokal | geordneter Windows-Shutdown | 0 GB | 0 GB | 6,658 GB | vom Benutzer freigegeben | 2026-09-05 |
 
 ## Aktueller Stand
 

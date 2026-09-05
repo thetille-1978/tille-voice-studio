@@ -118,6 +118,13 @@ Maßgeblich bleibt [docs/COMPATIBILITY_PLAN.md](docs/COMPATIBILITY_PLAN.md). Noc
 
 Nach dem Betriebssystemwechsel ist die vorgesehene Workflowphase **U1 – Codex unter Ubuntu**. Danach folgt **U2 – nativer Hardware-Preflight**. ROCm wird erst in seiner eigenen freigegebenen Phase installiert.
 
-## Aktueller Stoppunkt
+## Aktueller Übergabepunkt
 
-W7 ist abgeschlossen. W8 – manueller Neustart – wurde noch nicht begonnen. Der Rechner darf erst nach ausdrücklicher Zustimmung neu gestartet werden.
+W7 ist abgeschlossen. Der Benutzer hat W8 und das sichere Herunterfahren für die Ubuntu-Installation ausdrücklich freigegeben. Wegen der noch belegten externen Datenlaufwerke wird Windows geordnet heruntergefahren statt direkt neu gestartet.
+
+Wenn der Rechner vollständig ausgeschaltet ist:
+
+1. Die geschützten externen Datenlaufwerke `I:` und `J:` physisch trennen.
+2. Den Intenso-Ubuntu-Stick angeschlossen lassen.
+3. Den Rechner manuell einschalten und über das UEFI-Bootmenü vom Intenso-Stick starten.
+4. In U0 nur „Ubuntu neben Windows Boot Manager installieren“ wählen. Falls diese Option fehlt: **STOPP** und einen Screenshot oder ein Foto bereitstellen.
