@@ -120,11 +120,17 @@ Nach dem Betriebssystemwechsel ist die vorgesehene Workflowphase **U1 – Codex 
 
 ## Aktueller Übergabepunkt
 
-W7 ist abgeschlossen. Der Benutzer hat W8 und das sichere Herunterfahren für die Ubuntu-Installation ausdrücklich freigegeben. Wegen der noch belegten externen Datenlaufwerke wird Windows geordnet heruntergefahren statt direkt neu gestartet.
+- W8 wurde freigegeben und der geordnete Windows-Shutdown erfolgreich ausgelöst.
+- Der Benutzer hat Ubuntu 24.04.4 mit Standardeinstellungen und zunächst ohne Internet vom verifizierten Intenso-Stick installiert.
+- Nach der Installation wurde der Stick entfernt und Windows erfolgreich gestartet.
+- Windows bestätigt auf Datenträger 3 neben der unveränderten 831,511-GiB-NTFS-Partition `A:` eine neue 1,05-GiB-EFI-Systempartition und eine neue 98,95-GiB-Linux-Dateisystempartition.
+- Damit ist die Installation auf dem vorgesehenen 100-GiB-Bereich plausibel und die Windows-Seite weiterhin funktionsfähig.
+- Noch offen ist der erste erfolgreiche Start des installierten Ubuntu. U0 bleibt bis dahin **WAITING FOR USER**.
 
-Wenn der Rechner vollständig ausgeschaltet ist:
+Nächster Schritt:
 
-1. Die geschützten externen Datenlaufwerke `I:` und `J:` physisch trennen.
-2. Den Intenso-Ubuntu-Stick angeschlossen lassen.
-3. Den Rechner manuell einschalten und über das UEFI-Bootmenü vom Intenso-Stick starten.
-4. In U0 nur „Ubuntu neben Windows Boot Manager installieren“ wählen. Falls diese Option fehlt: **STOPP** und einen Screenshot oder ein Foto bereitstellen.
+1. Windows manuell neu starten.
+2. Im einmaligen UEFI-Bootmenü den Eintrag `ubuntu` beziehungsweise den Ubuntu-Eintrag der KINGSTON-NVMe wählen. Nicht erneut vom Installationsstick starten; dieser ist bereits entfernt.
+3. Keine Bootreparatur und keine Änderung der Bootreihenfolge vornehmen.
+4. Wenn Ubuntu startet, den Desktopstart bestätigen und anschließend mit U1 anhand von `POST_UBUNTU_CODEX_SETUP.md` fortfahren.
+5. Falls kein Ubuntu-Eintrag vorhanden ist oder Ubuntu nicht startet: **STOPP** und Foto des Bootmenüs beziehungsweise genaue Fehlermeldung bereitstellen.

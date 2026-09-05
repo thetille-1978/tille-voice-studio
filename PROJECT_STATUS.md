@@ -1,11 +1,11 @@
 # Projektstatus – Tille Voice Studio
 
-Stand: 2026-09-05, Phase W8 – SHUTDOWN AUTHORIZED
+Stand: 2026-09-05, Phase U0 – WAITING FOR USER
 
 | Bereich | Status |
 |---|---|
 | System | Windows 11 Home 25H2, Build 26200.9278, x64; W4-Sicherheitsprüfung durchgeführt |
-| Ubuntu | ISO 24.04.4 LTS Desktop AMD64 vollständig geladen und SHA256-verifiziert; noch nicht installiert |
+| Ubuntu | 24.04.4 LTS offline mit Standardeinstellungen installiert; Linux- und EFI-Partition unter Windows bestätigt, erster nativer Ubuntu-Start noch ausstehend |
 | Rufus | Portable x64 4.15.2396; Authenticode gültig; Ubuntu-Stick in W6 erfolgreich erstellt |
 | Kernel | Plan verifiziert: Ubuntu 6.17 HWE; noch nicht installiert |
 | GPU | AMD Radeon RX 7700 XT, 12 GB VRAM, Windows-Status OK |
@@ -33,9 +33,10 @@ Stand: 2026-09-05, Phase W8 – SHUTDOWN AUTHORIZED
 - [x] Ubuntu-Platz W5 – PASS; `A:` exakt um 100 GiB verkleinert, 100,001 GiB nicht zugeordnet
 - [x] Ubuntu-Installationsmedium W6 – PASS; Intenso-Stick mit Ubuntu 24.04.4 im GPT-/UEFI-Modus erstellt und lesend verifiziert
 - [x] Übergabe vor Neustart W7 – PASS; Readiness vollständig, Übergabe- und Codex-Setup-Dokumente erstellt
-- [ ] Manueller Betriebssystemwechsel W8 – vom Benutzer freigegeben; geordneter Shutdown ist der nächste unmittelbare Schritt
-- [ ] Dual Boot
-- [ ] Ubuntu nativ
+- [x] Manueller Betriebssystemwechsel W8 – PASS; geordneter Shutdown ausgeführt und Ubuntu-Installer gestartet
+- [ ] Ubuntu-Installation U0 – WAITING FOR USER; Installation und Partitionen bestätigt, erster Start des installierten Ubuntu ausstehend
+- [ ] Dual Boot – Windows-Start bestätigt, Ubuntu-Start noch offen
+- [ ] Ubuntu nativ – Installation vorhanden, Start noch zu bestätigen
 - [ ] RX 7700 XT erkannt
 - [ ] ROCm
 - [ ] PyTorch GPU
@@ -102,3 +103,10 @@ Stand: 2026-09-05, Phase W8 – SHUTDOWN AUTHORIZED
 - Der Benutzer hat W8, den Betriebssystemwechsel und ein sicheres Herunterfahren ausdrücklich freigegeben.
 - Wegen der noch durch Prozesse belegten Datenlaufwerke `I:` und `J:` wird ein geordneter Windows-Shutdown ohne `/f` verwendet. Nach vollständigem Ausschalten müssen `I:` und `J:` physisch getrennt werden; der Intenso-Ubuntu-Stick bleibt angeschlossen.
 - Nach dem manuellen Einschalten folgt U0 – manuelle Ubuntu-Installation. Wenn „Ubuntu neben Windows Boot Manager installieren“ nicht angeboten wird: **STOPP**, keine Partitionierung raten und Screenshot/Foto bereitstellen.
+- Der Benutzer hat Ubuntu 24.04.4 vom verifizierten Stick mit Standardeinstellungen und zunächst ohne Internet installiert, neu gestartet, den Installationsstick entfernt und anschließend Windows erfolgreich gebootet.
+- Windows-Nachprüfung nach U0: Datenträger 3 / KINGSTON SNV3S1000G bleibt Healthy/GPT. `A:` ist unverändert 831,511 GiB groß.
+- Der frühere freie Bereich wurde vom Ubuntu-Installer in eine 1,05-GiB-EFI-Systempartition (GPT-Typ `c12a7328-f81f-11d2-ba4b-00a0c93ec93b`) und eine 98,95-GiB-Linux-Dateisystempartition (GPT-Typ `0fc63daf-8483-4772-8e79-3d69d8477de4`) aufgeteilt.
+- Nur noch rund 0,001 GiB sind nicht zugeordnet. Die Partitionsgrößen entsprechen dem vorgesehenen Ubuntu-Bereich; vorhandene Windows-Volumes sind weiterhin erreichbar.
+- Der Intenso-Installationsstick ist entfernt. Die geschützten USB-Datenlaufwerke `I:` und `J:` werden weiterhin als Healthy erkannt.
+- Der UEFI-Starteintrag konnte aus dem nicht erhöhten Windows-Prozess nicht gelesen werden. U0 bleibt deshalb bis zum ersten erfolgreichen Start des installierten Ubuntu auf **WAITING FOR USER**.
+- Nächster Schritt: Windows manuell neu starten, im einmaligen UEFI-Bootmenü den Eintrag `ubuntu` beziehungsweise den Ubuntu-Eintrag auf der KINGSTON-NVMe wählen und den erfolgreichen Ubuntu-Desktopstart bestätigen. Keine Bootreparatur oder Änderung der Bootreihenfolge vornehmen.
