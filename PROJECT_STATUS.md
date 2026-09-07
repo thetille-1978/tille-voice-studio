@@ -1,17 +1,17 @@
 # Projektstatus – Tille Voice Studio
 
-Stand: 2026-09-05, Phase U0 – WAITING FOR USER
+Stand: 2026-09-07, Phase U3B – PASS / U3C-PLANUNG OFFEN
 
 | Bereich | Status |
 |---|---|
-| System | Windows 11 Home 25H2, Build 26200.9278, x64; W4-Sicherheitsprüfung durchgeführt |
-| Ubuntu | 24.04.4 LTS offline mit Standardeinstellungen installiert; Linux- und EFI-Partition unter Windows bestätigt, erster nativer Ubuntu-Start noch ausstehend |
+| System | Ubuntu 24.04.4 LTS nativ auf x86_64; Dual Boot mit Windows bestätigt |
+| Ubuntu | 24.04.4 LTS erfolgreich nativ gestartet; U0 PASS |
 | Rufus | Portable x64 4.15.2396; Authenticode gültig; Ubuntu-Stick in W6 erfolgreich erstellt |
-| Kernel | Plan verifiziert: Ubuntu 6.17 HWE; noch nicht installiert |
-| GPU | AMD Radeon RX 7700 XT, 12 GB VRAM, Windows-Status OK |
-| gfx | `gfx1101` laut AMD verifiziert; unter installiertem Linux später praktisch zu bestätigen |
-| ROCm | Plan: 7.2.1 Radeon-Produktionspfad; noch nicht installiert |
-| Python | Plan: 3.12; noch nicht installiert/geprüft |
+| Kernel | 6.17.0-14-generic aktiv und dauerhaftes GRUB-Ziel; U3K PASS |
+| GPU | AMD Radeon RX 7700 XT, PCI-ID `1002:747e`, 12.272 MiB VRAM; `amdgpu` und KFD aktiv |
+| gfx | `gfx1101` nativ bestätigt (`gfx_target_version 110001`) |
+| ROCm | PASS – 7.2.1 vollständig installiert; signiertes AMD-DKMS 6.16.13 unter Kernel 6.17 aktiv; `gfx1101` und OpenCL verifiziert |
+| Python | System-Python 3.12.3 vorhanden; noch keine Projektumgebung eingerichtet |
 | PyTorch | Plan: 2.9.1 + ROCm 7.2.1; noch nicht installiert |
 | Torchaudio | Plan: 2.9.0 + ROCm 7.2.1; noch nicht installiert |
 | Torchvision | Plan: 0.24.0 + ROCm 7.2.1; noch nicht installiert |
@@ -19,9 +19,9 @@ Stand: 2026-09-05, Phase U0 – WAITING FOR USER
 | Chatterbox | 0.1.7 / Multilingual V3; Torch-2.6-Pin-Konflikt NOCH OFFEN |
 | Modell | Chatterbox Multilingual V3, 500M; noch nicht heruntergeladen |
 | GUI | noch nicht begonnen |
-| Codex unter Ubuntu | aktueller Standalone-Installer dokumentiert; 0,250 GB reserviert, noch nicht heruntergeladen |
-| Downloadverbrauch | 6,658 GB / 20 GB tatsächlich; 13,342 GB verbleibend, davon 0,250 GB für Codex reserviert |
-| SSD-Verbrauch Projekt | 6,658 GB ISO/Rufus außerhalb OneDrive plus unter 0,01 GB Projektdokumentation/Git-Metadaten |
+| Codex unter Ubuntu | U1 PASS; gebündelte Codex CLI 0.153.4 unter `/usr/lib/chatgpt/resources/codex` verfügbar; Standalone nicht heruntergeladen |
+| Downloadverbrauch | ca. 13,567 GB / 20 GB tatsächlich; ca. 6,433 GB verbleibend, davon 0,250 GB für Codex reserviert |
+| SSD-Verbrauch Projekt | 6,658 GB ISO/Rufus außerhalb OneDrive plus unter 0,01 GB Projektdokumentation |
 
 ## Checkpoints
 
@@ -34,11 +34,16 @@ Stand: 2026-09-05, Phase U0 – WAITING FOR USER
 - [x] Ubuntu-Installationsmedium W6 – PASS; Intenso-Stick mit Ubuntu 24.04.4 im GPT-/UEFI-Modus erstellt und lesend verifiziert
 - [x] Übergabe vor Neustart W7 – PASS; Readiness vollständig, Übergabe- und Codex-Setup-Dokumente erstellt
 - [x] Manueller Betriebssystemwechsel W8 – PASS; geordneter Shutdown ausgeführt und Ubuntu-Installer gestartet
-- [ ] Ubuntu-Installation U0 – WAITING FOR USER; Installation und Partitionen bestätigt, erster Start des installierten Ubuntu ausstehend
-- [ ] Dual Boot – Windows-Start bestätigt, Ubuntu-Start noch offen
-- [ ] Ubuntu nativ – Installation vorhanden, Start noch zu bestätigen
-- [ ] RX 7700 XT erkannt
-- [ ] ROCm
+- [x] Ubuntu-Installation U0 – PASS; installiertes Ubuntu 24.04.4 nativ gestartet
+- [x] Dual Boot – Windows- und Ubuntu-Start bestätigt
+- [x] Codex unter Ubuntu U1 – PASS; Projektordner und Übergabedokumente geladen
+- [x] Nativer Hardware-Preflight U2 – PASS; Details in `docs/U2_NATIVE_HARDWARE_PREFLIGHT.md`
+- [x] U3A – AMD-Repository-Bootstrap, APT-Metadaten und Nur-Lese-Installationssimulation – PASS
+- [x] U3K – Kernel 6.17 dauerhaftes GRUB-Bootziel; Änderung und Neustartprüfung PASS
+- [x] U3B – ROCm-Systemstack, DKMS-Reparatur, MOK und Benutzerterminal-Postflight – PASS
+- [x] Ubuntu nativ – PASS
+- [x] RX 7700 XT erkannt – PASS
+- [x] ROCm – PASS
 - [ ] PyTorch GPU
 - [ ] Chatterbox
 - [ ] Voice Clone
@@ -108,5 +113,37 @@ Stand: 2026-09-05, Phase U0 – WAITING FOR USER
 - Der frühere freie Bereich wurde vom Ubuntu-Installer in eine 1,05-GiB-EFI-Systempartition (GPT-Typ `c12a7328-f81f-11d2-ba4b-00a0c93ec93b`) und eine 98,95-GiB-Linux-Dateisystempartition (GPT-Typ `0fc63daf-8483-4772-8e79-3d69d8477de4`) aufgeteilt.
 - Nur noch rund 0,001 GiB sind nicht zugeordnet. Die Partitionsgrößen entsprechen dem vorgesehenen Ubuntu-Bereich; vorhandene Windows-Volumes sind weiterhin erreichbar.
 - Der Intenso-Installationsstick ist entfernt. Die geschützten USB-Datenlaufwerke `I:` und `J:` werden weiterhin als Healthy erkannt.
-- Der UEFI-Starteintrag konnte aus dem nicht erhöhten Windows-Prozess nicht gelesen werden. U0 bleibt deshalb bis zum ersten erfolgreichen Start des installierten Ubuntu auf **WAITING FOR USER**.
-- Nächster Schritt: Windows manuell neu starten, im einmaligen UEFI-Bootmenü den Eintrag `ubuntu` beziehungsweise den Ubuntu-Eintrag auf der KINGSTON-NVMe wählen und den erfolgreichen Ubuntu-Desktopstart bestätigen. Keine Bootreparatur oder Änderung der Bootreihenfolge vornehmen.
+- U0 nachträglich abgeschlossen: Das installierte Ubuntu 24.04.4 wurde erfolgreich nativ gestartet; `/boot/efi` liegt auf der neuen 1-GiB-EFI-Partition und `/` auf der 99-GiB-ext4-Partition der KINGSTON-NVMe.
+- U1 abgeschlossen: Codex ist unter Ubuntu verfügbar, im lokalen Projektpfad gestartet und hat die Übergabedokumente eingelesen. Die vorhandene gebündelte Codex CLI meldet Version 0.153.4; dafür entstand kein neuer Projekt-Download.
+- U2-Liveprüfung vom 2026-09-06: Ubuntu 24.04.4, Kernel 6.17.0-14-generic, x86_64, UEFI und Secure Boot bestätigt.
+- Die RX 7700 XT wird nativ als PCI-Gerät `1002:747e` erkannt. `amdgpu` ist geladen, KFD hat einen dGPU-Knoten angelegt, 12.272 MiB VRAM sind bereit und `gfx_target_version 110001` bestätigt `gfx1101`.
+- Benutzerseitiger Terminaltest nach der Zugriffsbereinigung: `/dev/kfd` und `/dev/dri/renderD128` sind für den Benutzer beide les- und schreibbar. Der anfängliche KFD-Berechtigungsblocker ist behoben.
+- CPU AMD Ryzen 5 7500F (6 Kerne/12 Threads), 30 GiB RAM, 8 GiB Swap und 75 GiB freier Platz auf `/` bestätigt.
+- ROCm-, AMD-SMI- und `rocminfo`-Werkzeuge sind noch nicht installiert; das ist am Ende von U2 erwartungsgemäß. U2 verursachte keinen Download.
+- U2 ist **PASS**. Nächster Schritt ist die separat zu planende ROCm-Phase. Vor Paketinstallation oder Download müssen die dann aktuelle offizielle AMD-Methode, genaue Komponenten, Downloadgrößen, Secure-Boot-Auswirkungen und das Budget geprüft und einzeln freigegeben werden.
+- U3-Planungsprüfung vom 2026-09-06: Die aktuelle offizielle AMD-Radeon-Matrix bestätigt weiterhin Ubuntu 24.04.4/HWE 6.17, RX 7700 XT, ROCm 7.2.1 und PyTorch 2.9.1 als Produktionspfad.
+- Die Radeon-spezifische AMD-Anleitung sieht `graphics,rocm` vor. Dieser Pfad kann `amdgpu-dkms` installieren und erfordert bei aktivem Secure Boot eine kontrollierte MOK-Signierung. Der vorhandene Ubuntu-`amdgpu` funktioniert bereits; deshalb wird keine Treiberänderung vor einer separaten Freigabe vorgenommen.
+- Lokale U3-Vorprüfung: Kernel-Header sind vorhanden; `python3-pip`, `python3-wheel`, Setuptools, DKMS und ROCm-Pakete fehlen. Die lokalen APT-Metadaten sind unvollständig.
+- Die vier offiziellen AMD-Framework-Wheels umfassen laut HTTP-Metadaten zusammen 1.941.642.484 Byte / 1,942 GB. ROCm-Systempakete und Voraussetzungen sind darin noch nicht enthalten.
+- Vollständiger Plan: `docs/U3_ROCM_INSTALL_PLAN.md`. U3A erhielt vor der Repository-/APT-Änderung und dem Download die getrennte Freigabe.
+- Wegen der Codex-Netzwerk-/`sudo`-Sandbox wurde der vorbereitete Helfer `scripts/u3a_prepare_and_simulate.sh` im normalen Ubuntu-Terminal ausgeführt. Er stoppte wie vorgesehen nach Repository-Bootstrap, Metadatenaktualisierung, AMD-`--dryrun`, unabhängiger APT-Simulation und Größenermittlung.
+- Ein Abrufversuch innerhalb der Sandbox scheiterte bereits bei der DNS-Auflösung und erzeugte nur eine 0-Byte-Platzhalterdatei in `work/u3a`; dies verursachte keinen Downloadverbrauch. Der Helfer ersetzt sie erst nach erfolgreicher Größen- und Paketmetadatenprüfung.
+- U3A wurde anschließend erfolgreich abgeschlossen. Installiert wurde ausschließlich das offizielle 16.908-Byte-Paket `amdgpu-install`; die AMD-Quellen für ROCm 7.2.1 und AMDGPU 30.30.1 sind registriert. ROCm, DKMS und Frameworks blieben unangetastet.
+- Die protokollierte Referenzsimulation umfasst 444 neue Pakete, keine Entfernung und 6.855.525.228 Byte / 6,856 GB Download. Die vier AMD-Framework-Wheels kämen mit weiteren 1.941.642.484 Byte / 1,942 GB hinzu.
+- U3A verursachte einschließlich APT-Metadaten ungefähr 0,0534 GB Download; der kumulierte Projektverbrauch liegt damit bei ungefähr 6,711 GB.
+- Kritischer Kernelbefund: Der Neustart am 2026-09-07 hat den bereits installierten HWE-Kernel 7.0.0-31 aktiviert. Der unterstützte Kernel 6.17.0-14 ist weiterhin installiert; AMDs ROCm-7.2.1-Matrix nennt für Ubuntu 24.04.4 ausdrücklich Kernel 6.17.
+- Der aktuelle offizielle Chatterbox-Multilingual-V3-Lader lädt selektiv `t3_mtl23ls_v3.safetensors`, `s3gen.pt`, `ve.pt`, `conds.pt` und drei Tokenizerdateien, zusammen ungefähr 3,21 GB. Voller ROCm-Systemstack, AMD-Wheels und diese Modelldateien würden den kumulierten Verbrauch auf ungefähr 18,72 GB bringen, noch ohne übrige Chatterbox-Abhängigkeiten.
+- U3B war deshalb zunächst blockiert. Vor der Treiber-/ROCm-Installation waren eine kontrollierte Kernelstrategie und eine Budgetentscheidung erforderlich.
+- Der Benutzer hat Kernel `6.17.0-14-generic` am 2026-09-07 erfolgreich einmalig über GRUB gestartet. Liveprüfung bestätigt diesen aktiven Kernel; GRUB steht jedoch weiterhin auf dem automatisch neuesten Eintrag (`GRUB_DEFAULT=0`).
+- U3K wurde mit `scripts/u3k_pin_kernel_6_17.sh` vorbereitet. Der Helfer validiert den vorhandenen Menüpfad, sichert `/etc/default/grub`, setzt Kernel 6.17 als Standard, macht das Menü fünf Sekunden sichtbar und führt `update-grub` aus; bei einem Fehler stellt er die Sicherung wieder her.
+- U3K wurde anschließend ausgeführt und nach dem Neustart verifiziert: `6.17.0-14-generic` ist aktiv und dauerhaftes GRUB-Ziel, das Menü ist fünf Sekunden sichtbar, die Sicherung `/etc/default/grub.u3k-backup-20260907T202040Z` existiert und Secure Boot bleibt aktiviert. U3K ist PASS; Download 0 GB.
+- Der Benutzer hat U3B anschließend ausdrücklich für maximal 6.856.000.000 Byte Paketdownload und die Systeminstallation `graphics,rocm` einschließlich `amdgpu-dkms` freigegeben.
+- Die aktuelle Wiederholung der Simulation bestätigt den freigegebenen Stand exakt: 444 neue Pakete, 0 Upgrades, 0 Entfernungen und 6.855.525.228 Byte Download.
+- `scripts/u3b_install_rocm.sh` und `docs/U3B_RUNBOOK.md` sind vorbereitet. Der Helfer erzwingt die Kernel-, GRUB-, GPU-, Geräte-, Secure-Boot-, Versions-, Paketanzahl-, Download- und Speichergrenzen vor Beginn der Installation. Ausführung im normalen Ubuntu-Terminal steht noch aus.
+- U3B wurde ausgeführt. `rocm`, `amdgpu-lib` und `rocminfo` sind installiert; `amdgpu-dkms` ist für Kernel 6.17 als `installed` registriert, blieb aber als Debian-Paket halb konfiguriert, weil der Postinstallationslauf zusätzlich Kernel 7.0 bauen wollte und an dessen inkompatiblen Schnittstellen scheiterte.
+- Der Benutzer hat die Reparatur durch Entfernung exakt der fünf inaktiven Kernel-7.0-/HWE-Pakete ausdrücklich freigegeben. `scripts/u3b_repair_remove_kernel_7.sh` simuliert und erzwingt genau diese Liste, führt kein `autoremove` aus und schließt anschließend `dpkg`, DKMS und GRUB kontrolliert ab. Reparaturausführung steht noch aus; bis dahin nicht neu starten.
+- Die U3B-Reparatur, der Neustart und die MOK-Einschreibung wurden erfolgreich abgeschlossen. Liveprüfung bestätigt Kernel 6.17, Secure Boot, den eingeschriebenen lokalen MOK-Schlüssel, vollständig konfigurierte ROCm-Pakete sowie das signierte und geladene AMD-DKMS-Modul 6.16.13.
+- Der korrigierte Helfer `scripts/u3b_postflight.sh` wurde im normalen Benutzerterminal erfolgreich ausgeführt. Er bestätigt Lese-/Schreibzugriff auf `/dev/kfd` und `/dev/dri/renderD128`, `gfx1101`, die RX 7700 XT sowie genau ein OpenCL-GPU-Gerät. U3B und ROCm sind damit **PASS**; Nachweise liegen unter `work/u3b-postflight/`.
+- U3C beginnt ausschließlich mit Planung: Python 3.12.3 und `pip` 24.0 sind vorhanden, `python3.12-venv` fehlt. PyTorch-Wheels oder andere Pakete werden erst nach Konflikt-, Größen- und Freigabeprüfung heruntergeladen.
+- U3C1 ist vorbereitet, aber nicht freigegeben: `docs/U3C_PYTORCH_PLAN.md` und `scripts/u3c1_prepare_venv.sh` begrenzen den ersten Schritt auf genau drei Venv-Pakete und höchstens 2.428.604 Byte. U3C2 und Chatterbox bleiben ausgeschlossen.
+- Projektorganisationshinweis: `/home/tille/Projects/TilleVoiceStudio` ist derzeit kein Git-Repository. Das blockiert U2 nicht, sollte aber vor umfangreichen Projektänderungen geklärt werden.

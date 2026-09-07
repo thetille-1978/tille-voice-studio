@@ -1,0 +1,14 @@
+U3B postflight: 2026-09-07T23:26:32+02:00
+Result: PASS
+Kernel: 6.17.0-14-generic
+Groups: tille adm cdrom sudo dip video plugdev users lpadmin render
+Secure Boot: SecureBoot enabled 
+amdgpu module: /lib/modules/6.17.0-14-generic/updates/dkms/amdgpu.ko.zst
+amdgpu version: 6.16.13
+amdgpu signer: tille-System-Product-Name Secure Boot Module Signature key
+DKMS: amdgpu/6.16.13-2303411.24.04, 6.17.0-14-generic, x86_64: installed
+Devices:
+crw-rw----+ 1 root render 226, 128 Sep  7 23:18 /dev/dri/renderD128
+crw-rw----  1 root render 234,   0 Sep  7 23:18 /dev/kfd
+ROCm target: gfx1101
+OpenCL devices: 1

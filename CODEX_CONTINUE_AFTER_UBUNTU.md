@@ -1,7 +1,7 @@
 # Tille Voice Studio – Fortsetzung nach der Ubuntu-Installation
 
-- Stand: 2026-09-05
-- Letzter erfolgreicher Checkpoint: **W7 – PASS**
+- Stand: 2026-09-07
+- Letzter erfolgreicher Checkpoint: **U3B – PASS**
 Dieses Dokument verhindert, dass die bereits abgeschlossenen Windows-, ISO- und USB-Schritte nach dem Betriebssystemwechsel wiederholt werden.
 
 ## UBUNTU INSTALLATION READY
@@ -72,10 +72,10 @@ Falls „Ubuntu neben Windows Boot Manager installieren“ nicht angeboten wird:
 
 ## Downloadbudget
 
-- Tatsächlicher Verbrauch: 6.657.609.064 Byte / gerundet 6,658 GB
-- Verbleibend tatsächlich: 13,342 GB von 20 GB
+- Tatsächlicher Verbrauch: ungefähr 13,567 GB einschließlich U3A-Metadaten und U3B-Paketnutzlast
+- Verbleibend tatsächlich: ungefähr 6,433 GB von 20 GB
 - Für spätere Codex-Installation reserviert: 0,250 GB
-- Nach Reservierung noch nicht verplant: 13,092 GB
+- Nach Reservierung noch nicht verplant: ungefähr 6,183 GB
 - W7-Download: 0 GB
 - Die Reservierung ist keine Downloadfreigabe.
 
@@ -94,7 +94,7 @@ Die Ubuntu-Installation soll möglichst ohne umfangreiche Updates erfolgen. Jede
 - Triton: 3.5.1
 - Chatterbox: 0.1.7 / Multilingual V3
 
-Maßgeblich bleibt [docs/COMPATIBILITY_PLAN.md](docs/COMPATIBILITY_PLAN.md). Noch nichts aus diesem Stack wurde installiert.
+Maßgeblich bleibt [docs/COMPATIBILITY_PLAN.md](docs/COMPATIBILITY_PLAN.md). ROCm 7.2.1 und der signierte AMD-Treiber sind installiert und verifiziert; Python-Framework, Chatterbox und Modell sind noch nicht installiert.
 
 ## Bekannte Risiken
 
@@ -116,21 +116,16 @@ Maßgeblich bleibt [docs/COMPATIBILITY_PLAN.md](docs/COMPATIBILITY_PLAN.md). Noc
 7. `PROJECT_STATUS.md`, `DOWNLOAD_BUDGET.md` und dieses Dokument einlesen.
 8. Nicht zu W0 zurückkehren und Ubuntu, ISO oder Rufus nicht erneut herunterladen.
 
-Nach dem Betriebssystemwechsel ist die vorgesehene Workflowphase **U1 – Codex unter Ubuntu**. Danach folgt **U2 – nativer Hardware-Preflight**. ROCm wird erst in seiner eigenen freigegebenen Phase installiert.
+Nach dem Betriebssystemwechsel folgten **U1 – Codex unter Ubuntu** und **U2 – nativer Hardware-Preflight**. Beide Phasen sind seit 2026-09-06 abgeschlossen. ROCm wird erst in seiner eigenen freigegebenen Phase installiert.
 
 ## Aktueller Übergabepunkt
 
-- W8 wurde freigegeben und der geordnete Windows-Shutdown erfolgreich ausgelöst.
-- Der Benutzer hat Ubuntu 24.04.4 mit Standardeinstellungen und zunächst ohne Internet vom verifizierten Intenso-Stick installiert.
-- Nach der Installation wurde der Stick entfernt und Windows erfolgreich gestartet.
-- Windows bestätigt auf Datenträger 3 neben der unveränderten 831,511-GiB-NTFS-Partition `A:` eine neue 1,05-GiB-EFI-Systempartition und eine neue 98,95-GiB-Linux-Dateisystempartition.
-- Damit ist die Installation auf dem vorgesehenen 100-GiB-Bereich plausibel und die Windows-Seite weiterhin funktionsfähig.
-- Noch offen ist der erste erfolgreiche Start des installierten Ubuntu. U0 bleibt bis dahin **WAITING FOR USER**.
+- U0 PASS: Ubuntu 24.04.4 wurde erfolgreich nativ gestartet; Windows wurde zuvor ebenfalls erfolgreich gestartet.
+- U1 PASS: Codex ist unter Ubuntu im lokalen Projektpfad verfügbar und die Übergabedokumente wurden eingelesen.
+- U2 PASS: Ubuntu 24.04.4, Kernel 6.17, UEFI, Secure Boot, RX 7700 XT, `amdgpu`, KFD, `gfx1101` und der effektive Zugriff auf `/dev/kfd` sowie `/dev/dri/renderD128` sind bestätigt.
+- Vollständiger U2-Nachweis: `docs/U2_NATIVE_HARDWARE_PREFLIGHT.md`.
+- ROCm 7.2.1 ist installiert und vollständig verifiziert. PyTorch und Chatterbox wurden noch nicht installiert oder heruntergeladen.
 
-Nächster Schritt:
+U3A, U3K und U3B sind abgeschlossen. Kernel 6.17 ist dauerhaftes GRUB-Ziel, ROCm 7.2.1 läuft mit dem signierten AMD-DKMS-Modul 6.16.13, und der Benutzerterminal-Postflight bestätigt Gerätezugriff, `gfx1101`, RX 7700 XT und genau ein OpenCL-GPU-Gerät.
 
-1. Windows manuell neu starten.
-2. Im einmaligen UEFI-Bootmenü den Eintrag `ubuntu` beziehungsweise den Ubuntu-Eintrag der KINGSTON-NVMe wählen. Nicht erneut vom Installationsstick starten; dieser ist bereits entfernt.
-3. Keine Bootreparatur und keine Änderung der Bootreihenfolge vornehmen.
-4. Wenn Ubuntu startet, den Desktopstart bestätigen und anschließend mit U1 anhand von `POST_UBUNTU_CODEX_SETUP.md` fortfahren.
-5. Falls kein Ubuntu-Eintrag vorhanden ist oder Ubuntu nicht startet: **STOPP** und Foto des Bootmenüs beziehungsweise genaue Fehlermeldung bereitstellen.
+Nächster Haltepunkt ist U3C-Planung. Python 3.12.3 und `pip` 24.0 sind vorhanden, `python3.12-venv` fehlt. Vor jeder Installation müssen die isolierte Umgebung, der bekannte Chatterbox-Pin-Konflikt, die noch nicht bezifferten Abhängigkeiten und das verbleibende Downloadbudget geprüft werden. Es liegt noch keine U3C-Download- oder Systemänderungsfreigabe vor.

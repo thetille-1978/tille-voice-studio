@@ -1,0 +1,25 @@
+NOTE: This is only a simulation!
+      apt-get needs root privileges for real execution.
+      Keep also in mind that locking is deactivated,
+      so don't depend on the relevance to the real current situation!
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  amd64-microcode bpfcc-tools bpftrace ieee-data intel-microcode iucode-tool
+  libbpfcc libclang-cpp18 libclang1-18 libfwupd2 libllvm18 libwoff1
+  linux-hwe-7.0-headers-7.0.0-31 python3-bpfcc python3-netaddr thermald
+  ubuntu-kernel-accessories
+Use 'apt autoremove' to remove them.
+The following packages will be REMOVED:
+  linux-generic-hwe-24.04 linux-headers-7.0.0-31-generic
+  linux-headers-generic-hwe-24.04 linux-image-7.0.0-31-generic
+  linux-image-generic-hwe-24.04
+0 upgraded, 0 newly installed, 5 to remove and 10 not upgraded.
+1 not fully installed or removed.
+Remv linux-generic-hwe-24.04 [7.0.0-31.31~24.04.1]
+Remv linux-headers-generic-hwe-24.04 [7.0.0-31.31~24.04.1]
+Remv linux-headers-7.0.0-31-generic [7.0.0-31.31~24.04.1]
+Remv linux-image-generic-hwe-24.04 [7.0.0-31.31~24.04.1]
+Remv linux-image-7.0.0-31-generic [7.0.0-31.31~24.04.1]
+Conf amdgpu-dkms (1:6.16.13.30300100-2303411.24.04 repo.radeon.com:7.2.1/noble [all])

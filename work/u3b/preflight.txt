@@ -1,0 +1,7 @@
+U3B preflight: 2026-09-07T22:34:23+02:00
+Kernel: 6.17.0-14-generic
+Architecture: x86_64
+Secure Boot: SecureBoot enabled
+Free bytes on /: 77146087424
+amdgpu-install: 30.30.1.0.30300100-2303411.24.04
+GRUB target: Advanced options for Ubuntu>Ubuntu, with Linux 6.17.0-14-generic

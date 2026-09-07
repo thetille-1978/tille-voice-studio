@@ -1,0 +1,5 @@
+INFO: i386 architecture has not been enabled with dpkg.
+Installation of 32-bit run time has been excluded.
+apt-get update
+apt-get install -y amdgpu-lib rocm amdgpu-dkms linux-headers-6.17.0-14-generic linux-headers-7.0.0-31-generic
+ln -sf /usr/bin/amdgpu-install /usr/bin/amdgpu-uninstall

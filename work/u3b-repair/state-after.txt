@@ -1,0 +1,13 @@
+U3B repair completed: 2026-09-07T23:13:25+02:00
+Kernel: 6.17.0-14-generic
+GRUB target: Advanced options for Ubuntu>Ubuntu, with Linux 6.17.0-14-generic
+
+amdgpu-dkms	1:6.16.13.30300100-2303411.24.04	ii 	install ok installed
+amdgpu-lib	1:7.2.70201-2303469.24.04	ii 	install ok installed
+rocm	7.2.1.70201-81~24.04	ii 	install ok installed
+rocminfo	1.0.0.70201-81~24.04	ii 	install ok installed
+
+DKMS:
+amdgpu/6.16.13-2303411.24.04, 6.17.0-14-generic, x86_64: installed
+
+Pending MOK keys:

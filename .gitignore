@@ -1,0 +1,46 @@
+# Local Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+pip-cache/
+wheelhouse/
+downloads/
+
+# Models and generated ML artifacts
+models/
+checkpoints/
+hf_cache/
+.huggingface/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets/
+.codex/
+
+# Private/source audio and generated audio
+private_audio/
+recordings/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+
+# Downloaded system packages are reproducible artifacts
+*.deb
