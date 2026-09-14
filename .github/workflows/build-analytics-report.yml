@@ -42,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add downloads/Ghosting-vs-Stalking-Analytics-7-Tage.exe
+          git add -f downloads/Ghosting-vs-Stalking-Analytics-7-Tage.exe
           if (-not (git diff --cached --quiet)) {
             git commit -m "Build Windows analytics PDF exporter"
             git push origin HEAD:analytics-pdf-tool
