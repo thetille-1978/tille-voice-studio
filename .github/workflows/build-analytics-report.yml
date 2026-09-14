@@ -1,0 +1,49 @@
+name: Build analytics PDF tool
+
+on:
+  push:
+    branches:
+      - analytics-pdf-tool
+    paths:
+      - "analytics-report-tool/**"
+      - ".github/workflows/build-analytics-report.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish Windows EXE
+        shell: pwsh
+        run: |
+          dotnet publish analytics-report-tool/GhostingAnalyticsReport.csproj -c Release -r win-x64 -p:PublishAot=true -p:StripSymbols=true
+          New-Item -ItemType Directory -Force -Path downloads | Out-Null
+          Copy-Item "analytics-report-tool/bin/Release/net8.0/win-x64/publish/Ghosting-vs-Stalking-Analytics-7-Tage.exe" "downloads/Ghosting-vs-Stalking-Analytics-7-Tage.exe" -Force
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ghosting-vs-Stalking-Analytics-7-Tage
+          path: downloads/Ghosting-vs-Stalking-Analytics-7-Tage.exe
+          if-no-files-found: error
+
+      - name: Publish EXE on build branch
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/Ghosting-vs-Stalking-Analytics-7-Tage.exe
+          if (-not (git diff --cached --quiet)) {
+            git commit -m "Build Windows analytics PDF exporter"
+            git push origin HEAD:analytics-pdf-tool
+          }
